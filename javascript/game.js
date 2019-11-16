@@ -1,42 +1,90 @@
-// random number generators for game  
-$( document ).ready(function(){
-var randomNum = Math.floor((Math.random() * 100) + 19);
-$('#randomNumber').text(Random);
-// random number generators for gems   
-var r1 = Math.floor((Math.random() * 12) + 1);
-var r2 = Math.floor((Math.random() * 12) + 1);
-var r3 = Math.floor((Math.random() * 12) + 1);
-var r4 = Math.floor((Math.random() * 12) + 1);
-var loss;
-var  win;
-var  user;
+$(document).ready(function(){
+    var Random=Math.floor(Math.random()*101+19)
 
+    $('#randomNumber').text(Random);
 
-// need 4 crystals 
-r1.addEventListener('click', function()
- {
-console.log("hey you clicked on r1");
-})
-r2_div.addEventListener('click', function()
- {
-console.log("hey you clicked on r2");
-})
-r3_div.addEventListener('click', function()
- {
-console.log("hey you clicked on r3");
-})
-r4_div.addEventListener('click', function()
- {
-console.log("hey you clicked on r4");
-})
-// random number generator for each crystal 1-12 
+    var num1= Math.floor(Math.random()*11+1)
+    var num2= Math.floor(Math.random()*11+1)
+    var num3= Math.floor(Math.random()*11+1)
+    var num4= Math.floor(Math.random()*11+1)
+ 
+    var userTotal= 0; 
+    var wins= 0;
+    var losses = 0;
+    
+  $('#numberWins').text(wins);
+  $('#numberLosses').text(losses);
+  
+  function reset(){
+        Random=Math.floor(Math.random()*101+19);
+        console.log(Random)
+        $('#randomNumber').text(Random);
+        num1= Math.floor(Math.random()*11+1);
+        num2= Math.floor(Math.random()*11+1);
+        num3= Math.floor(Math.random()*11+1);
+        num4= Math.floor(Math.random()*11+1);
+        userTotal= 0;
+        $('#finalTotal').text(userTotal);
+        } 
 
-// random number generator for score to match for game 1-90
+  function yay(){
+  alert("You won!");
+    wins++; 
+    $('#numberWins').text(wins);
+    reset();
+  }
 
-// game needs to reset after each win and loss 
-
-// event when the player goes over the random # 
-
-// computer score 
-
-// user score if equals random # true 
+  function loser(){
+  alert ("Loser !!!");
+    losses++;
+    $('#numberLosses').text(losses);
+    reset()
+  }
+  
+    $('#r1').on ('click', function(){
+      userTotal = userTotal + num1;
+      console.log("New userTotal= " + userTotal);
+      $('#finalTotal').text(userTotal); 
+           
+          if (userTotal == Random){
+            winner();
+          }
+          else if ( userTotal > Random){
+            loser();
+          }   
+    })  
+    $('#r2').on ('click', function(){
+      userTotal = userTotal + num2;
+      console.log("New userTotal= " + userTotal);
+      $('#finalTotal').text(userTotal); 
+          if (userTotal == Random){
+            winner();
+          }
+          else if ( userTotal > Random){
+            loser();
+          } 
+    })  
+    $('#r3').on ('click', function(){
+      userTotal = userTotal + num3;
+      console.log("New userTotal= " + userTotal);
+      $('#finalTotal').text(userTotal);
+            if (userTotal == Random){
+            winner();
+          }
+          else if ( userTotal > Random){
+            loser();
+          } 
+    })  
+    $('#r4').on ('click', function(){
+      userTotal = userTotal + num4;
+      console.log("New userTotal= " + userTotal);
+      $('#finalTotal').text(userTotal); 
+        
+            if (userTotal == Random){
+            winner();
+          }
+          else if ( userTotal > Random){
+            loser();
+          }
+    });   
+  }); 
